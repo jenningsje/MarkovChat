@@ -1,0 +1,6 @@
+[submodule "Markov-Bot"]
+	path = Markov-Bot
+	url = https://github.com/jenningsje/Markov-Bot
+[submodule "Markov-GUI"]
+	path = Markov-GUI
+	url = https://github.com/jenningsje/Markov-GUI
