@@ -1,9 +1,9 @@
 version: '3.6'
 
 services:
-  chatgpt:
+  frontend:
     build:
-      context: ./path-to-chatgpt-dockerfile  # Adjust path if needed
+      context: ./Markov-GUI/Dockerfile
     ports:
       - "3000:3000"
     environment:
@@ -14,7 +14,7 @@ services:
 
   backend:
     build:
-      context: ./path-to-backend-dockerfile  # Adjust path if needed
+      context: ./Markov-Bot/Dockerfile
     ports:
       - "8889:8889"
     networks:
@@ -30,7 +30,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./html:/etc/nginx/html
     depends_on:
-      - chatgpt
+      - frontend
       - backend  # Ensure nginx waits for both chatgpt and backend
     networks:
       - mynetwork
