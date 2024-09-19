@@ -1,25 +1,12 @@
-version: '3.6'
-
 services:
   frontend:
     build:
       context: ./Markov-GUI
     ports:
-      - "3000:3000"
+      - 3000:3000
     environment:
-      - 'OPENAI_API_HOST=http://backend:8889'  # Use the service name for backend
+      - 'OPENAI_API_HOST=http://localhost:8889'
       - 'OPENAI_API_TYPE=azure'
-    networks:
-      - mynetwork
-
-  backend:
-    build:
-      context: ./Markov-Bot/docker-app
-    ports:
-      - "8889:8889"
-    networks:
-      - mynetwork
-
   nginx:
     image: nginx:latest
     ports:
@@ -31,9 +18,6 @@ services:
       - ./html:/etc/nginx/html
     depends_on:
       - frontend
-      - backend  # Ensure nginx waits for both chatgpt and backend
-    networks:
-      - mynetwork
     deploy:
       resources:
         limits:
@@ -42,7 +26,3 @@ services:
         reservations:
           cpus: '1'
           memory: 1G
-
-networks:
-  mynetwork:
-
