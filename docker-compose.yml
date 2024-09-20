@@ -26,3 +26,8 @@ services:
         reservations:
           cpus: '1'
           memory: 1G
+  backend:
+    build:
+      context: ./Markov-Bot/docker-app
+    ports:
+      - 8889:8889
